@@ -1,0 +1,10 @@
+Jinja2==3.1.2
+MarkupSafe==2.1.1
+marshmallow==3.17.1
+marshmallow-dataclass==8.5.8
+mypy-extensions==0.4.3
+packaging==21.3
+pyparsing==3.0.9
+PyYAML==6.0
+typing-inspect==0.8.0
+typing_extensions==4.3.0

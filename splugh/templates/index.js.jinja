@@ -1,0 +1,33 @@
+class KeyMonitor {
+    constructor() {
+        this.callbackMap = {};
+    }
+
+    onKey(key, callback) {
+        this.callbackMap[key.toLowerCase()] = callback;
+    }
+
+    // TODO: Memoize the output of this, because its possibly costly.
+    // Look at the usage
+    buildListener() {
+        return (event) => {
+            const callback = this.callbackMap[event.key.toLowerCase()];
+            if (callback) { callback(); }
+        }
+    }
+
+    start() {
+        document.addEventListener("keypress", (event) => {
+            this.buildListener()(event);
+        }, false);
+    }
+}
+
+const keyMonitor = new KeyMonitor();
+{% for page in config.pages %}
+keyMonitor.onKey("{{ page.shortcut }}", () => {
+    document.getElementById('{{ page.title }}-href').click();
+});
+{% endfor %}
+
+keyMonitor.start()
